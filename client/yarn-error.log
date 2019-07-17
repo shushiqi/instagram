@@ -1,0 +1,31 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\yarn\bin\yarn.js add webpack webpack-dev-server webpack-cli -D
+
+PATH: 
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\shushiqi\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Git\cmd;D:\nvm;C:\Program Files\nodejs;C:\Users\shushiqi\AppData\Local\Microsoft\WindowsApps;D:\Microsoft VS Code\bin;D:\Docker Toolbox
+
+Yarn version: 
+  1.16.0
+
+Node version: 
+  12.4.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: f:\codingdream\instagram\client\package.json: Unexpected end of JSON input
+      at JSON.parse (<anonymous>)
+      at D:\nvm\v12.4.0\node_modules\yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (D:\nvm\v12.4.0\node_modules\yarn\lib\cli.js:304:30)
+      at D:\nvm\v12.4.0\node_modules\yarn\lib\cli.js:315:13
+
+npm manifest: 
+  
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
