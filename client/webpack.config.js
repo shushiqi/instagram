@@ -17,17 +17,17 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /nde_modules/,
+        exclude: /node_modules/,
         use: {
           loader: "babel-loader"
         }
       },
       {
         test: /\.(png|jpg|gif)$/,
-        use:[
+        use: [
           {
             loader: 'url-loader',
-            options:{
+            options: {
               limit: 8192
             }
           }
@@ -35,12 +35,33 @@ module.exports = {
       },
       {
         test: /\.(css|scss|less)$/,
-        use: ['style-loader', 'css-loader','sass-loader']
+        use: ['style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[local]--[hash:base64:5]'
+            }
+          },
+          'sass-loader'],
+          exclude: /node_modules/
+      },
+      {
+        test: /\.(css|scss|less)$/,
+        use: ['style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          },
+          'sass-loader'],
+          include: /node_modules/
       }
     ]
   },
-  resolve:{
-    alias:{
+  resolve: {
+    alias: {
       '@': clientPath,
       '@scss': path.resolve(clientPath, 'assets/style'),
       '@assets': path.resolve(clientPath, 'assets'),
@@ -48,7 +69,7 @@ module.exports = {
       '@common': path.resolve(clientPath, 'src/common'),
     }
   },
-  devServer:{
+  devServer: {
     contentBase: path.resolve(clientPath, 'dist'),
     historyApiFallback: true,
     host: '127.0.0.1',
@@ -57,12 +78,21 @@ module.exports = {
     hot: true,
     compress: true,
     overlay: true,
-    stats: "error-only",
     open: true,
-    disabledHostCheck: true
+    disableHostCheck: true,
+    proxy: {
+      "/api": {
+        target: "http://127.0.0.1:7001",
+        changeOrigin: true
+      }
+    }
   },
-  plugins:{
-    
-  }
-  
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: path.resolve(clientPath, 'index.html'),
+      filename: 'index.html'
+      // favicon: path.resolve(clientPath, 'assets/image/favicon.ico')
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ]
 }
