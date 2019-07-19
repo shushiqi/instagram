@@ -10,3 +10,18 @@ ERROR: Client does not support authentication protocol requested by server; cons
 
 解决办法：进入mysql，输入 
   `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '自己的密码';`
+
+>mysql 数据库表使用下划线命名法
+
+- egg-router-plus
+api版本命名空间
+
+- password 加密
+  存储用户密码时应进行加密
+  登陆时，将用户输入的密码使用同样的加密方式进行加密后与存储的加密密码机型比较
+  - crypto 通用的加密和哈希算法 Hmac sha256
+  - JSON Web Token jwt 是一个非常轻巧的规范，允许我们在用户和服务器之间传递安全可靠的信息cookie
+
+- 状态码 Status Code
+  400 这个请求是非法的，导致服务器不接受该请求
+  401 未经授权，被服务器配置拒绝

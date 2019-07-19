@@ -26,13 +26,12 @@ module.exports = appInfo => {
     password: '123456789',
     database: 'ins'
   }
-  // add your user config here
-  const userConfig = {
-    // myAppName: 'egg',
-  };
-
+  config.authWhiteList = ['/api/v2/user/login', '/api/v2/user/login/register']
+  config.middleware = ['authorization']
+  config.password_secret = 'ps1234secr'
+  config.auth_cookie_name = 'token',
+  config.jwtSecret = 'shushiqi'
   return {
-    ...config,
-    ...userConfig,
+    ...config
   };
 };
